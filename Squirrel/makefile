@@ -4,6 +4,7 @@ all:
 	g++ -m32 -std=c++11 -c -I./inc/ -I/usr/local/include  ./src/*.cpp
 	mv *.o obj/
 	ar rv -o ./bin/sqstdlib.a ./obj/*.o
+	mkdir -p ../kIRCBot/lib/
 	cp bin/sqstdlib.a ../kIRCBot/lib/
 	@echo done.
 
