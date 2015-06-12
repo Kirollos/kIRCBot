@@ -151,7 +151,7 @@ SQInteger kSquirrelNatives::IRC_Connect(HSQUIRRELVM v) // IRC_Connect(host, port
 
 SQInteger kSquirrelNatives::IRC_Quit(HSQUIRRELVM v) // IRC_Disconnect(id, quitmsg);
 {
-	GETID(v, botid);
+	GETID(v, botid); ISIDVALID(botid)
 	if (IRCSock == nullptr) return 1;
 	const SQChar* quitmsg;
 	sq_getstring(v, 3, &quitmsg);
@@ -165,7 +165,7 @@ SQInteger kSquirrelNatives::IRC_Quit(HSQUIRRELVM v) // IRC_Disconnect(id, quitms
 
 SQInteger kSquirrelNatives::IRC_SendRaw(HSQUIRRELVM v) // IRC_SendRaw(id, raw);
 {
-	GETID(v, botid);
+	GETID(v, botid); ISIDVALID(botid)
 	const SQChar* raw;
 	sq_getstring(v, 3, &raw);
 	IRCSock->SendRaw(std::string(raw));
@@ -174,7 +174,7 @@ SQInteger kSquirrelNatives::IRC_SendRaw(HSQUIRRELVM v) // IRC_SendRaw(id, raw);
 
 SQInteger kSquirrelNatives::IRC_JoinChannel(HSQUIRRELVM v) // IRC_JoinChannel(id, channel);
 {
-	GETID(v, botid);
+	GETID(v, botid); ISIDVALID(botid)
 	const SQChar* channel;
 	sq_getstring(v, 3, &channel);
 	IRCSock->SendRawEx("JOIN %s", channel);
@@ -184,7 +184,7 @@ SQInteger kSquirrelNatives::IRC_JoinChannel(HSQUIRRELVM v) // IRC_JoinChannel(id
 
 SQInteger kSquirrelNatives::IRC_PartChannel(HSQUIRRELVM v) // IRC_PartChannel(id, channel, partmsg);
 {
-	GETID(v, botid);
+	GETID(v, botid); ISIDVALID(botid)
 	const SQChar* channel, *reason;
 	sq_getstring(v, 3, &channel);
 	sq_getstring(v, 4, &reason);
@@ -195,7 +195,7 @@ SQInteger kSquirrelNatives::IRC_PartChannel(HSQUIRRELVM v) // IRC_PartChannel(id
 
 SQInteger kSquirrelNatives::IRC_ChangeNick(HSQUIRRELVM v) // IRC_ChangeNick(id, newnick);
 {
-	GETID(v, botid);
+	GETID(v, botid); ISIDVALID(botid)
 	const SQChar* newnick;
 	sq_getstring(v, 3, &newnick);
 	IRCSock->SendRawEx("NICK %s", newnick);
@@ -205,7 +205,7 @@ SQInteger kSquirrelNatives::IRC_ChangeNick(HSQUIRRELVM v) // IRC_ChangeNick(id, 
 
 SQInteger kSquirrelNatives::IRC_SetMode(HSQUIRRELVM v) // IRC_SetMode(id, target, modes);
 {
-	GETID(v, botid);
+	GETID(v, botid); ISIDVALID(botid)
 	const SQChar* target, *modes;
 	sq_getstring(v, 3, &target);
 	sq_getstring(v, 4, &modes);
@@ -216,7 +216,7 @@ SQInteger kSquirrelNatives::IRC_SetMode(HSQUIRRELVM v) // IRC_SetMode(id, target
 
 SQInteger kSquirrelNatives::IRC_Say(HSQUIRRELVM v) // IRC_Say(id, target, message);
 {
-	GETID(v, botid);
+	GETID(v, botid); ISIDVALID(botid)
 	const SQChar* target, *message;
 	sq_getstring(v, 3, &target);
 	sq_getstring(v, 4, &message);
@@ -227,7 +227,7 @@ SQInteger kSquirrelNatives::IRC_Say(HSQUIRRELVM v) // IRC_Say(id, target, messag
 
 SQInteger kSquirrelNatives::IRC_Notice(HSQUIRRELVM v) // IRC_Notice(id, target, message);
 {
-	GETID(v, botid);
+	GETID(v, botid); ISIDVALID(botid)
 	const SQChar* target, *message;
 	sq_getstring(v, 3, &target);
 	sq_getstring(v, 4, &message);
@@ -238,7 +238,7 @@ SQInteger kSquirrelNatives::IRC_Notice(HSQUIRRELVM v) // IRC_Notice(id, target, 
 
 SQInteger kSquirrelNatives::IRC_InviteUser(HSQUIRRELVM v) // IRC_InviteUser(id, user, channel);
 {
-	GETID(v, botid);
+	GETID(v, botid); ISIDVALID(botid)
 	const SQChar* user, *channel;
 	sq_getstring(v, 3, &user);
 	sq_getstring(v, 4, &channel);
@@ -249,7 +249,7 @@ SQInteger kSquirrelNatives::IRC_InviteUser(HSQUIRRELVM v) // IRC_InviteUser(id, 
 
 SQInteger kSquirrelNatives::IRC_KickUser(HSQUIRRELVM v) // IRC_KickUser(id, channel, nick, reason);
 {
-	GETID(v, botid);
+	GETID(v, botid); ISIDVALID(botid)
 	const SQChar* channel, *nick, *reason;
 	sq_getstring(v, 3, &channel);
 	sq_getstring(v, 4, &nick);
@@ -261,7 +261,7 @@ SQInteger kSquirrelNatives::IRC_KickUser(HSQUIRRELVM v) // IRC_KickUser(id, chan
 
 SQInteger kSquirrelNatives::IRC_SetChannelTopic(HSQUIRRELVM v) // IRC_SetChannelTopic(id, channel, topic);
 {
-	GETID(v, botid);
+	GETID(v, botid); ISIDVALID(botid)
 	const SQChar* channel, *topic;
 	sq_getstring(v, 3, &channel);
 	sq_getstring(v, 4, &topic);
@@ -272,7 +272,7 @@ SQInteger kSquirrelNatives::IRC_SetChannelTopic(HSQUIRRELVM v) // IRC_SetChannel
 
 SQInteger kSquirrelNatives::IRC_SendCTCP(HSQUIRRELVM v) // IRC_SendCTCP(id, target, message);
 {
-	GETID(v, botid);
+	GETID(v, botid); ISIDVALID(botid)
 	const SQChar* target, *message;
 	sq_getstring(v, 3, &target);
 	sq_getstring(v, 4, &message);
@@ -283,7 +283,7 @@ SQInteger kSquirrelNatives::IRC_SendCTCP(HSQUIRRELVM v) // IRC_SendCTCP(id, targ
 
 SQInteger kSquirrelNatives::IRC_GetUMode(HSQUIRRELVM v) // IRC_GetUMode(id);
 {
-	GETID(v, botid);
+	GETID(v, botid); ISIDVALID(botid)
 	const SQChar* umodes = (const SQChar*) IRCSock->_usermode.c_str();
 	sq_pushstring(v, umodes, -1);
 	return 1;
@@ -291,7 +291,7 @@ SQInteger kSquirrelNatives::IRC_GetUMode(HSQUIRRELVM v) // IRC_GetUMode(id);
 
 SQInteger kSquirrelNatives::IRC_GetChMode(HSQUIRRELVM v) // IRC_GetChMode(id, channel);
 {
-	GETID(v, botid);
+	GETID(v, botid); ISIDVALID(botid)
 	const SQChar* channel;
 	sq_getstring(v, 3, &channel);
 	const SQChar* umodes = (const SQChar*)GetChanByName(IRCSock, channel)->_modes.c_str();
@@ -301,7 +301,7 @@ SQInteger kSquirrelNatives::IRC_GetChMode(HSQUIRRELVM v) // IRC_GetChMode(id, ch
 
 SQInteger kSquirrelNatives::IRC_SetCommandPrefix(HSQUIRRELVM v) // IRC_SetCommandPrefix(id, prefix);
 {
-	GETID(v, botid);
+	GETID(v, botid); ISIDVALID(botid)
 	const SQChar* prefix;
 	//char tmpprefix = NULL;
 	sq_getstring(v, 3, &prefix);
@@ -315,7 +315,7 @@ SQInteger kSquirrelNatives::IRC_SetCommandPrefix(HSQUIRRELVM v) // IRC_SetComman
 
 SQInteger kSquirrelNatives::IRC_GetChannelTopic(HSQUIRRELVM v) // IRC_GetChannelTopic(id, channel);
 {
-	GETID(v, botid);
+	GETID(v, botid); ISIDVALID(botid)
 	const SQChar* channel;
 	sq_getstring(v, 3, &channel);
 	const SQChar* rettopic = GetChanByName(IRCSock, std::string(channel))->_topic.c_str();
@@ -325,7 +325,7 @@ SQInteger kSquirrelNatives::IRC_GetChannelTopic(HSQUIRRELVM v) // IRC_GetChannel
 
 SQInteger kSquirrelNatives::IRC_GetUserChannelModes(HSQUIRRELVM v) // IRC_GetUserChannelModes(id, usernick, channel);
 {
-	GETID(v, botid);
+	GETID(v, botid); ISIDVALID(botid)
 	const SQChar* usernick, *channel;
 	sq_getstring(v, 3, &usernick);
 	sq_getstring(v, 4, &channel);
@@ -338,7 +338,7 @@ SQInteger kSquirrelNatives::IRC_GetUserChannelModes(HSQUIRRELVM v) // IRC_GetUse
 
 SQInteger kSquirrelNatives::IRC_IsUserOwner(HSQUIRRELVM v) // IRC_IsUserOwner(id, usernick, channel);
 {
-	GETID(v, botid);
+	GETID(v, botid); ISIDVALID(botid)
 	const SQChar* usernick, *channel;
 	sq_getstring(v, 3, &usernick);
 	sq_getstring(v, 4, &channel);
@@ -351,7 +351,7 @@ SQInteger kSquirrelNatives::IRC_IsUserOwner(HSQUIRRELVM v) // IRC_IsUserOwner(id
 
 SQInteger kSquirrelNatives::IRC_IsUserAdmin(HSQUIRRELVM v) // IRC_IsUserAdmin(id, usernick, channel);
 {
-	GETID(v, botid);
+	GETID(v, botid); ISIDVALID(botid)
 	const SQChar* usernick, *channel;
 	sq_getstring(v, 3, &usernick);
 	sq_getstring(v, 4, &channel);
@@ -364,7 +364,7 @@ SQInteger kSquirrelNatives::IRC_IsUserAdmin(HSQUIRRELVM v) // IRC_IsUserAdmin(id
 
 SQInteger kSquirrelNatives::IRC_IsUserOp(HSQUIRRELVM v) // IRC_IsUserOp(id, usernick, channel);
 {
-	GETID(v, botid);
+	GETID(v, botid); ISIDVALID(botid)
 	const SQChar* usernick, *channel;
 	sq_getstring(v, 3, &usernick);
 	sq_getstring(v, 4, &channel);
@@ -377,7 +377,7 @@ SQInteger kSquirrelNatives::IRC_IsUserOp(HSQUIRRELVM v) // IRC_IsUserOp(id, user
 
 SQInteger kSquirrelNatives::IRC_IsUserHalfop(HSQUIRRELVM v) // IRC_IsUserHalfop(id, usernick, channel);
 {
-	GETID(v, botid);
+	GETID(v, botid); ISIDVALID(botid)
 	const SQChar* usernick, *channel;
 	sq_getstring(v, 3, &usernick);
 	sq_getstring(v, 4, &channel);
@@ -390,7 +390,7 @@ SQInteger kSquirrelNatives::IRC_IsUserHalfop(HSQUIRRELVM v) // IRC_IsUserHalfop(
 
 SQInteger kSquirrelNatives::IRC_IsUserVoice(HSQUIRRELVM v) // IRC_IsUserVoice(id, usernick, channel);
 {
-	GETID(v, botid);
+	GETID(v, botid); ISIDVALID(botid)
 	const SQChar* usernick, *channel;
 	sq_getstring(v, 3, &usernick);
 	sq_getstring(v, 4, &channel);
@@ -403,7 +403,7 @@ SQInteger kSquirrelNatives::IRC_IsUserVoice(HSQUIRRELVM v) // IRC_IsUserVoice(id
 
 SQInteger kSquirrelNatives::IRC_IsUserAway(HSQUIRRELVM v) // IRC_IsUserAway(id, usernick, channel);
 {
-	GETID(v, botid);
+	GETID(v, botid); ISIDVALID(botid)
 	const SQChar* usernick, *channel;
 	sq_getstring(v, 3, &usernick);
 	sq_getstring(v, 4, &channel);
@@ -415,7 +415,7 @@ SQInteger kSquirrelNatives::IRC_IsUserAway(HSQUIRRELVM v) // IRC_IsUserAway(id, 
 
 SQInteger kSquirrelNatives::IRC_IsUserOper(HSQUIRRELVM v) // IRC_IsUserOper(id, usernick, channel);
 {
-	GETID(v, botid);
+	GETID(v, botid); ISIDVALID(botid)
 	const SQChar* usernick, *channel;
 	sq_getstring(v, 3, &usernick);
 	sq_getstring(v, 4, &channel);
@@ -427,7 +427,7 @@ SQInteger kSquirrelNatives::IRC_IsUserOper(HSQUIRRELVM v) // IRC_IsUserOper(id, 
 
 SQInteger kSquirrelNatives::IRC_IsUserBot(HSQUIRRELVM v) // IRC_IsUserBot(id, usernick, channel);
 {
-	GETID(v, botid);
+	GETID(v, botid); ISIDVALID(botid)
 	const SQChar* usernick, *channel;
 	sq_getstring(v, 3, &usernick);
 	sq_getstring(v, 4, &channel);
@@ -439,7 +439,7 @@ SQInteger kSquirrelNatives::IRC_IsUserBot(HSQUIRRELVM v) // IRC_IsUserBot(id, us
 
 SQInteger kSquirrelNatives::IRC_IsUserRegistered(HSQUIRRELVM v) // IRC_IsUserRegistered(id, usernick, channel);
 {
-	GETID(v, botid);
+	GETID(v, botid); ISIDVALID(botid)
 	const SQChar* usernick, *channel;
 	sq_getstring(v, 3, &usernick);
 	sq_getstring(v, 4, &channel);
@@ -451,7 +451,7 @@ SQInteger kSquirrelNatives::IRC_IsUserRegistered(HSQUIRRELVM v) // IRC_IsUserReg
 
 SQInteger kSquirrelNatives::IRC_GetChannelUserList(HSQUIRRELVM v) // userlist[] = IRC_GetChannelUserList(id, channel);
 {
-	GETID(v, botid);
+	GETID(v, botid); ISIDVALID(botid)
 	const SQChar* channel;
 	sq_getstring(v, 3, &channel);
 

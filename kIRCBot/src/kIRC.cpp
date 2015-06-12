@@ -254,12 +254,8 @@ void OnSocketRaw(kSock* Socket, std::string raw)
 			if (!theChan->__WHO)
 			{
 				theChan->__WHO = true;
-				GetChanByName(IRCSock, chan)->userlist.clear(); // Expiremental
-			}
-			//GetChanByName(IRCSock, chan)->userlist.clear();
-
-			//kIRCChan* theChan = GetChanByName(IRCSock, chan);			
-			
+				theChan->userlist.clear();
+			}			
 			theChan->addNick(pnick, flags);
 
 		}
@@ -408,6 +404,8 @@ void OnSocketRaw(kSock* Socket, std::string raw)
 				// calling MODE #chan to refill the kIRCChan chanmodes
 				IRCSock->SendRawEx("MODE %s", chan.c_str());
 				// ----
+				// calling WHO #chan to refill user list with their new modes
+				IRCSock->SendRawEx("WHO %s", chan.c_str());
 				
 				// Calling callback
 				std::string modestr = params;

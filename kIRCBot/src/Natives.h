@@ -23,6 +23,23 @@ limitations under the License.
 #define GETID(v,botid)	SQInteger botid; sq_getinteger(v, 2, &botid)
 #define IRCSock			IRCs[VMIDTOREAL(botid)]
 
+#define ISIDVALID(botid) \
+{\
+try{\
+if(IRCs.at(VMIDTOREAL(botid)) == nullptr) \
+{\
+kConsole::PrintError("Error: botid(%i) is invalid.", botid);\
+sq_pushinteger(v, -1);\
+return 1;\
+}\
+}\
+catch(...){\
+kConsole::PrintError("Error: botid(%i) is invalid.", botid);\
+sq_pushinteger(v, -1);\
+return 1;\
+}\
+}
+
 namespace kSquirrelNatives
 {
 	SQInteger printerror(HSQUIRRELVM v);			// printerror(str);
