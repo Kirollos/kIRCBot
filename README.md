@@ -2,10 +2,10 @@ kIRCBot
 ========
 
 This is a project I've written in C++ in my free time.
-Basically, It's an IRC Bot giving the user the ability to load [Squirrel-lang] (squirrel-lang.org) scripts to use it.
+Basically, It's an IRC Bot giving the user the ability to load [Squirrel-lang](http://squirrel-lang.org/) scripts to use it.
 
-**Note: This project is still under development. I'm working on this in my free time as well.
-**Documentation will be added soon.
+**Note: This project is still under development. I'm working on this in my free time as well.**  
+Documentation will be added soon.
 
 Features
 =========
@@ -28,7 +28,7 @@ Linux
 
 Run ``make`` in **Squirrel/** and **sqstdlib/** then ``make Debug`` or ``make Release`` in **kIRCBot/** to compile the application (or ``make all`` for both Debug and Release).
 
-**Note:** This project uses [Boost] (http://boost.org) for regex.
+**Note:** This project uses [Boost](http://boost.org) for regex.
 
 Usage
 =====
